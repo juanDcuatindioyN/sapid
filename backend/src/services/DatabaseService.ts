@@ -64,7 +64,8 @@ class DatabaseService {
     idle: number;
     acquire: number;
   } {
-    const pool = sequelize.connectionManager.pool;
+    // Access pool through any type since it's not exposed in types
+    const pool = (sequelize.connectionManager as any).pool;
     
     return {
       max: pool?.max || 0,
