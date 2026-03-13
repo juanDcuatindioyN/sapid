@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    container_name: sapid-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-sapid}
+      POSTGRES_USER: ${DB_USER:-sapid_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-sapid_password}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=es_ES.UTF-8"
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/src/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-sapid_user} -d ${DB_NAME:-sapid}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - sapid-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sapid-backend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: ${BACKEND_PORT:-3001}
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-sapid}
+      DB_USER: ${DB_USER:-sapid_user}
+      DB_PASSWORD: ${DB_PASSWORD:-sapid_password}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-8h}
+      SCALE_PROTOCOL: ${SCALE_PROTOCOL:-RS232}
+      SCALE_PORT: ${SCALE_PORT:-/dev/ttyUSB0}
+      SCALE_BAUD_RATE: ${SCALE_BAUD_RATE:-9600}
+      PRINTER_TYPE: ${PRINTER_TYPE:-network}
+      PRINTER_INTERFACE: ${PRINTER_INTERFACE}
+    ports:
+      - "${BACKEND_PORT:-3001}:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./backend/logs:/app/logs
+    networks:
+      - sapid-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sapid-frontend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3001}
+    ports:
+      - "${FRONTEND_PORT:-3000}:3000"
+    depends_on:
+      - backend
+    networks:
+      - sapid-network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  sapid-network:
+    driver: bridge

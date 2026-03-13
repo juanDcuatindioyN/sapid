@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-size: 14px;
+  min-height: 100vh;
+}
+
+/* Ensure minimum touch target sizes for industrial usability */
+button,
+input,
+select,
+textarea {
+  min-height: 44px;
+  min-width: 44px;
+}
