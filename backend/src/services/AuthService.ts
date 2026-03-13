@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import UsuarioRepository from '../repositories/UsuarioRepository';
+import LogRepository from '../repositories/LogRepository';
 
 interface AuthResponse {
   success: boolean;
@@ -88,6 +89,12 @@ class AuthService {
 
       const token = jwt.sign(payload, jwtSecret, {
         expiresIn: jwtExpiresIn,
+      });
+
+      // Log successful login
+      await LogRepository.log({
+        usuario_id: usuario.id,
+        accion: `Login exitoso - Usuario: ${usuario.usuario}`,
       });
 
       return {

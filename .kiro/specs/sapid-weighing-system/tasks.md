@@ -284,8 +284,8 @@ Este plan implementa un sistema monolítico modular con 6 módulos principales: 
     - Test para reimpresión desde historial
 
 
-- [ ] 7. Implementar Módulo de Persistencia y Auditoría (Backend)
-  - [ ] 7.1 Implementar LogRepository para auditoría
+- [x] 7. Implementar Módulo de Persistencia y Auditoría (Backend)
+  - [x] 7.1 Implementar LogRepository para auditoría
     - Implementar método log(entry) para registrar acciones
     - Implementar métodos de consulta: findByUsuario, findByDateRange
     - Implementar validación de campos obligatorios (usuarioId, accion, fecha)
@@ -295,13 +295,13 @@ Este plan implementa un sistema monolítico modular con 6 módulos principales: 
     - **Property 25: Critical operations are logged**
     - **Valida: Requirements RNF04.1, RNF04.2, RNF04.3, RNF04.4**
 
-  - [ ] 7.3 Implementar middleware de logging automático
+  - [x] 7.3 Implementar middleware de logging automático
     - Crear middleware que registra automáticamente: login exitoso, creación de sesión de pesaje, modificación de usuarios
     - Capturar información de contexto: usuario_id, IP, terminal (user-agent)
     - Implementar logging con niveles: ERROR, WARN, INFO, DEBUG
     - _Requirements: RNF04_
 
-  - [ ] 7.4 Implementar DatabaseService para gestión de conexiones
+  - [x] 7.4 Implementar DatabaseService para gestión de conexiones
     - Configurar pool de conexiones (max 20)
     - Implementar manejo de transacciones
     - Implementar manejo de errores de conexión
@@ -312,7 +312,7 @@ Este plan implementa un sistema monolítico modular con 6 módulos principales: 
     - **Property 18: Database errors preserve session data**
     - **Valida: Requirements RF06.5**
 
-  - [ ] 7.6 Crear endpoints REST para logs (solo administrador)
+  - [x] 7.6 Crear endpoints REST para logs (solo administrador)
     - GET /api/logs - Consultar logs con filtros (usuario, fecha)
     - GET /api/logs/export - Exportar logs en formato CSV
     - Proteger endpoints con JWTMiddleware y RoleGuard (solo administrador)
@@ -329,8 +329,8 @@ Este plan implementa un sistema monolítico modular con 6 módulos principales: 
     - Test para consulta por usuario
 
 
-- [ ] 8. Implementar seguridad y sanitización (Backend)
-  - [ ] 8.1 Implementar sanitización de entradas
+- [x] 8. Implementar seguridad y sanitización (Backend)
+  - [x] 8.1 Implementar sanitización de entradas
     - Instalar y configurar librería de sanitización (express-validator o similar)
     - Implementar sanitización para todos los endpoints que reciben input de usuario
     - Implementar validación de tipos y formatos
@@ -341,14 +341,14 @@ Este plan implementa un sistema monolítico modular con 6 módulos principales: 
     - **Property 22: User inputs are sanitized**
     - **Valida: Requirements RNF02.4**
 
-  - [ ] 8.3 Configurar headers de seguridad HTTP
+  - [x] 8.3 Configurar headers de seguridad HTTP
     - Instalar y configurar helmet.js
     - Configurar HSTS (HTTP Strict Transport Security)
     - Configurar CSP (Content Security Policy)
     - Configurar X-Frame-Options, X-Content-Type-Options
     - _Requirements: RNF02.1_
 
-  - [ ] 8.4 Implementar rate limiting
+  - [x] 8.4 Implementar rate limiting
     - Instalar y configurar express-rate-limit
     - Configurar límite de 5 intentos por minuto en endpoint de login
     - Configurar límites generales para otros endpoints
