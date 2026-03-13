@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import PesajeRepository from '../repositories/PesajeRepository';
 import ValidationService from './ValidationService';
 import CalculationService from './CalculationService';
+import TicketGenerator from './ticket/TicketGenerator';
 
 interface PesajeMetadata {
   codigo: string;
@@ -131,6 +132,11 @@ class PesajeService {
 
     // Remove session from memory
     this.activeSessions.delete(sessionId);
+
+    // Trigger print (non-blocking, errors should not affect database save)
+    TicketGenerator.generateAndPrint(pesaje.id).catch((error) => {
+      console.error('⚠️ Failed to print ticket after save:', error);
+    });
 
     return pesaje;
   }

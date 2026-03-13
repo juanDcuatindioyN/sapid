@@ -236,8 +236,8 @@ Este plan implementa un sistema monolítico modular con 6 módulos principales: 
     - Test para sesión inexistente
 
 
-- [ ] 6. Implementar Módulo de Generación de Tickets (Backend)
-  - [ ] 6.1 Crear TicketTemplate para formateo de tickets
+- [x] 6. Implementar Módulo de Generación de Tickets (Backend)
+  - [x] 6.1 Crear TicketTemplate para formateo de tickets
     - Implementar plantilla para Factura de Medios con formato de 80mm
     - Implementar plantilla para Factura de Lotes con formato de 80mm
     - Incluir todos los campos requeridos: header (nombre frigorífico), fecha, ID, código, especie, sexo, tipo, detalles de pesos, peso total, operador
@@ -249,7 +249,7 @@ Este plan implementa un sistema monolítico modular con 6 módulos principales: 
     - **Property 17: Generated tickets contain all required fields**
     - **Valida: Requirements RF06.4**
 
-  - [ ] 6.3 Implementar PrinterService para comunicación con impresora
+  - [x] 6.3 Implementar PrinterService para comunicación con impresora
     - Instalar y configurar librería node-thermal-printer
     - Implementar configuración de impresora (type: network/usb/serial, interface, width, encoding)
     - Implementar método print(ticketData) que envía comandos ESC/POS
@@ -257,7 +257,7 @@ Este plan implementa un sistema monolítico modular con 6 módulos principales: 
     - Implementar cola de impresión para reintentos
     - _Requirements: RF06.3_
 
-  - [ ] 6.4 Implementar TicketGenerator como orquestador
+  - [x] 6.4 Implementar TicketGenerator como orquestador
     - Implementar método generateTicket(pesaje, usuario) que formatea ticket según plantilla
     - Implementar método print(ticket) que envía a PrinterService
     - Implementar logging de todas las operaciones de impresión
@@ -272,7 +272,7 @@ Este plan implementa un sistema monolítico modular con 6 módulos principales: 
     - **Property 19: Database persistence is independent of printer status**
     - **Valida: Requirements RF06.6**
 
-  - [ ] 6.7 Crear endpoint REST para reimpresión
+  - [x] 6.7 Crear endpoint REST para reimpresión
     - POST /api/ticket/print/:pesajeId - Reimprimir ticket de pesaje existente
     - Proteger endpoint con JWTMiddleware
     - _Requirements: RF06_

@@ -6,6 +6,7 @@ import sequelize from './database/config';
 import authRoutes from './routes/authRoutes';
 import scaleRoutes from './routes/scaleRoutes';
 import pesajeRoutes from './routes/pesajeRoutes';
+import ticketRoutes from './routes/ticketRoutes';
 
 dotenv.config();
 
@@ -37,6 +38,7 @@ app.get('/health/db', async (_req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/scale', scaleRoutes);
 app.use('/api/pesaje', pesajeRoutes);
+app.use('/api/ticket', ticketRoutes);
 
 // Initialize database connection and start server
 async function startServer() {
