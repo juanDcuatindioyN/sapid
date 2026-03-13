@@ -163,15 +163,15 @@ Este plan implementa un sistema monolítico modular con 6 módulos principales: 
     - Test para reconexión automática
 
 
-- [ ] 5. Implementar Módulo de Lógica de Negocio - Pesaje (Backend)
-  - [ ] 5.1 Crear modelos y repositorios de pesaje
+- [x] 5. Implementar Módulo de Lógica de Negocio - Pesaje (Backend)
+  - [x] 5.1 Crear modelos y repositorios de pesaje
     - Implementar PesajeRepository con métodos: create, findById, findAll, update, delete
     - Implementar método createWithDetails para transacción atómica (pesaje + detalles)
     - Implementar métodos de consulta: findByDateRange, findByUsuario
     - Implementar validaciones de datos según reglas del modelo
     - _Requirements: RF03, RF04, RF05, RF06_
 
-  - [ ] 5.2 Implementar ValidationService para metadatos
+  - [x] 5.2 Implementar ValidationService para metadatos
     - Implementar validación de código (1-50 caracteres, no vacío)
     - Implementar validación de especie (bovino/porcino)
     - Implementar validación de sexo (H/M)
@@ -183,7 +183,7 @@ Este plan implementa un sistema monolítico modular con 6 módulos principales: 
     - **Property 8: Complete metadata enables weight capture**
     - **Valida: Requirements RF03.3, RF04.1, RF04.2, RF04.3, RF04.4**
 
-  - [ ] 5.4 Implementar CalculationService para cálculos de peso
+  - [x] 5.4 Implementar CalculationService para cálculos de peso
     - Implementar método calculateTotal que suma array de capturas
     - Implementar redondeo a 2 decimales con precisión
     - Implementar validación de precisión numérica (tolerancia 0.01)
@@ -201,7 +201,7 @@ Este plan implementa un sistema monolítico modular con 6 módulos principales: 
     - **Property 13: Finalized session persists calculated total**
     - **Valida: Requirements RF05.4**
 
-  - [ ] 5.8 Implementar PesajeService como orquestador principal
+  - [x] 5.8 Implementar PesajeService como orquestador principal
     - Implementar método createSession(metadata) que crea sesión en memoria
     - Implementar método addWeightCapture(sessionId, weight) que agrega captura y actualiza total
     - Implementar método finalizeSession(sessionId) que persiste en base de datos
@@ -218,7 +218,7 @@ Este plan implementa un sistema monolítico modular con 6 módulos principales: 
     - **Property 15: Finalized sessions have unique IDs and timestamps**
     - **Valida: Requirements RF06.2**
 
-  - [ ] 5.11 Crear endpoints REST para operaciones de pesaje
+  - [x] 5.11 Crear endpoints REST para operaciones de pesaje
     - POST /api/pesaje/session - Crear nueva sesión de pesaje
     - POST /api/pesaje/session/:id/capture - Agregar captura de peso a sesión
     - POST /api/pesaje/session/:id/finalize - Finalizar sesión y persistir
