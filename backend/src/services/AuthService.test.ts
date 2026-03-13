@@ -1,9 +1,11 @@
 import { describe, test, expect, beforeEach, vi } from 'vitest';
 import AuthService from './AuthService';
 import UsuarioRepository from '../repositories/UsuarioRepository';
+import LogRepository from '../repositories/LogRepository';
 
 // Mock del repositorio
 vi.mock('../repositories/UsuarioRepository');
+vi.mock('../repositories/LogRepository');
 
 describe('AuthService - Unit Tests', () => {
   beforeEach(() => {

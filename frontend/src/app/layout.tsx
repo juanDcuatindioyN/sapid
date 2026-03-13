@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { AuthProvider } from '@/contexts/AuthContext';
+import { AppProvider } from '@/contexts/AppContext';
 
 export const metadata: Metadata = {
   title: 'SAPID - Sistema Automatizado de Pesaje',
@@ -20,7 +22,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body>{children}</body>
+      <body>
+        <AuthProvider>
+          <AppProvider>
+            {children}
+          </AppProvider>
+        </AuthProvider>
+      </body>
     </html>
   );
 }
