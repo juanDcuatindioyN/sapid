@@ -88,8 +88,8 @@ class AuthService {
       };
 
       const token = jwt.sign(payload, jwtSecret, {
-        expiresIn: jwtExpiresIn as string,
-      });
+        expiresIn: jwtExpiresIn,
+      } as jwt.SignOptions);
 
       // Log successful login
       await LogRepository.log({
