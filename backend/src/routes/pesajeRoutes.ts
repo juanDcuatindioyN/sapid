@@ -1,12 +1,12 @@
 import { Router, Request, Response } from 'express';
 import { body, query, validationResult } from 'express-validator';
 import { PesajeService } from '../services';
-import { JWTMiddleware } from '../middleware';
+import { jwtMiddleware } from '../middleware';
 
 const router = Router();
 
 // Apply JWT middleware to all routes
-router.use(JWTMiddleware);
+router.use(jwtMiddleware);
 
 /**
  * POST /api/pesaje/session
