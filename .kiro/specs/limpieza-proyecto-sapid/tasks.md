@@ -6,7 +6,7 @@ Este plan implementa la limpieza y optimización del proyecto SAPID, eliminando 
 
 ## Tareas
 
-- [ ] 1. Verificar estado inicial y crear backup
+- [-] 1. Verificar estado inicial y crear backup
   - Verificar que existe un commit de git limpio o crear uno
   - Listar todos los archivos package.json del proyecto
   - Crear snapshot del estado actual de dependencias
