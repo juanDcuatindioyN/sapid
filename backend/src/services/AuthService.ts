@@ -79,7 +79,7 @@ class AuthService {
 
       // Generar JWT token
       const jwtSecret = process.env.JWT_SECRET || 'default-secret-key';
-      const jwtExpiresIn = process.env.JWT_EXPIRES_IN || '8h';
+      const jwtExpiresIn: string | number = process.env.JWT_EXPIRES_IN || '8h';
 
       const payload = {
         id: usuario.id,
@@ -88,7 +88,7 @@ class AuthService {
       };
 
       const token = jwt.sign(payload, jwtSecret, {
-        expiresIn: jwtExpiresIn,
+        expiresIn: jwtExpiresIn as string,
       });
 
       // Log successful login
